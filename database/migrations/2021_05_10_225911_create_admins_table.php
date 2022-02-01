@@ -21,7 +21,7 @@ class CreateAdminsTable extends Migration
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('email');
-            $table->string('status')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
 
             $table->foreign('roles_id')->references('id')->on('roles');

@@ -1,11 +1,11 @@
 @extends('home.master')
 @section('konten')
-    <h3><i class="fa fa-angle-right"></i> Data Administrator</h3>
+    <h3><i class="fa fa-angle-right"></i> Data Customer</h3>
     <div class="row mt">
         <div class="col-lg-12">
             <div class="form-panel">
                 <div class="loc">
-                    <p><a href="{{ route('dashboard') }}">Dashboard</a> <i class="fa fa-angle-right"></i> Data Administrator
+                    <p><a href="{{ route('dashboard') }}">Dashboard</a> <i class="fa fa-angle-right"></i> Data Customer
                     </p>
                 </div>
                 @if ($messege = Session::get("pesan"))
@@ -19,11 +19,9 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th width="100px">Jenis Kelamin</th>
                                 <th>Alamat</th>
                                 <th>No. Telepon</th>
                                 <th>Email</th>
-                                <th>Status</th>
                                 <th width="150px">Opsi</th>
                             </tr>
                         </thead>
@@ -31,17 +29,9 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{$item->nama}}</td>
-                                    <td>{{$item->kelamin}}</td>
                                     <td>{{$item->alamat}}</td>
                                     <td>{{$item->no_telp}}</td>
                                     <td>{{$item->email}}</td>
-                                    <td>
-                                        @if ($item->status == 1)
-                                            Aktif
-                                        @else
-                                            Suspend
-                                        @endif
-                                    </td>
                                     <td>
                                         <a href="{{ route('edit_admin', $item->id) }}" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-pencil-square"></i></a>
                                         <a href="{{ route('delete_admin', $item->id) }}" onclick="return confirm('Yakin ingin menghapus admin {{$item->nama}} ?')" class="btn btn-sm btn-danger" title="Hapus"><i class="fa fa-trash-o"></i></a>

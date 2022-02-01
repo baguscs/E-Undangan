@@ -47,6 +47,12 @@
                               </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-2 control-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" name="password" value="{{old('password')}}" required autocomplete="off" class="form-control">
+                        </div>
+                    </div>
                     {{-- <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Foto Administrator</label>
                         <div class="col-md-9">

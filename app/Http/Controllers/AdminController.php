@@ -53,7 +53,7 @@ class AdminController extends Controller
         $newUser = new User;
         $newUser->admin_id = $data->id;
         $newUser->email = $req->email;
-        $newUser->password = Hash::make($data->akses);
+        $newUser->password = Hash::make($req->password);
 
         $newUser->save();
 
@@ -84,7 +84,7 @@ class AdminController extends Controller
 
     public function edited(Request $req, $id)
     {
-        $selectAdmin = Admin::where('id', $id)->firstOrFail();
+        $selectAdmin = admin::where('id', $id)->firstOrFail();
         if ($selectAdmin->email != $req->email) {
             $message =[
                 'unique' => 'Email tersebut telah terdaftar',
@@ -100,6 +100,7 @@ class AdminController extends Controller
         $selectAdmin->alamat = $req->alamat;
         $selectAdmin->no_telp = $req->telp;
         $selectAdmin->email = $req->email;
+        $selectAdmin->status = $req->status;
 
         $selectAdmin->save();
 
@@ -113,7 +114,7 @@ class AdminController extends Controller
     public function delete($id)
     {
         $dataUser = User::where('admin_id', $id)->delete();
-        $dataAdmin = Admin::where('id', $id)->delete();
+        $dataAdmin = admin::where('id', $id)->delete();
         return redirect()->route('admin')->with('pesan', 'Berhasil menghapus admin');
     }
 }

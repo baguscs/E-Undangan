@@ -23,6 +23,27 @@
         .loginbtn{
             background-color: aqua
         }
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
     </style>
     <body>
     <!-----start-main---->
@@ -33,6 +54,12 @@
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <h4 class="title">Welcome Back, Please Login First</h4>
+                @if ($messege = Session::get("pesan"))
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Error!</strong> {{ Session::get("pesan") }}.
+                    </div>
+                @endif
                 @error('email')
                     <div class="w3-panel w3-red w3-display-container w3-card">
                         <span onclick="this.parentElement.style.display='none'"
