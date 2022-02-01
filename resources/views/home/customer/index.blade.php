@@ -32,9 +32,16 @@
                                     <td>{{$item->alamat}}</td>
                                     <td>{{$item->no_telp}}</td>
                                     <td>{{$item->email}}</td>
+                                    @php
+                                        $passcode = $item->id;
+                                        $id = Crypt::encrypt($passcode);
+                                    @endphp
                                     <td>
-                                        <a href="{{ route('edit_admin', $item->id) }}" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-pencil-square"></i></a>
-                                        <a href="{{ route('delete_admin', $item->id) }}" onclick="return confirm('Yakin ingin menghapus admin {{$item->nama}} ?')" class="btn btn-sm btn-danger" title="Hapus"><i class="fa fa-trash-o"></i></a>
+                                        <form action="{{ route('delete_customer', $id) }}" method="POST">
+                                            @csrf
+                                            <a href="{{ route('edit_customer', $id) }}" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-pencil-square"></i></a>
+                                            <button onclick="return confirm('Yakin ingin menghapus customer {{$item->nama}}')" type="submit" class="btn btn-danger" title="Hapus"><i class="fa fa-trash-o"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

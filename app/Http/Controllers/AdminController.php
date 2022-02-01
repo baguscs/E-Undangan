@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\admin;
 use App\Models\User;
 use Image;
@@ -78,13 +79,15 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        $data = Admin::find($id);
+        $cracked = Crypt::decrypt($id);
+        $data = Admin::find($cracked);
         return view('home.admin.edit', compact('data'));
     }
 
     public function edited(Request $req, $id)
     {
-        $selectAdmin = admin::where('id', $id)->firstOrFail();
+        $stack = Crypt::decrypt($id);
+        $selectAdmin = admin::where('id', $stack)->firstOrFail();
         if ($selectAdmin->email != $req->email) {
             $message =[
                 'unique' => 'Email tersebut telah terdaftar',
@@ -104,7 +107,7 @@ class AdminController extends Controller
 
         $selectAdmin->save();
 
-        $selectUser = User::where('admin_id', $id)->firstOrFail();
+        $selectUser = User::where('admin_id', $stack)->firstOrFail();
 
         $selectUser->email = $req->email;
         $selectUser->save();
@@ -113,8 +116,9 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        $dataUser = User::where('admin_id', $id)->delete();
-        $dataAdmin = admin::where('id', $id)->delete();
+        $change = Crypt::decrypt($id);
+        $dataUser = User::where('admin_id', $change)->delete();
+        $dataAdmin = admin::where('id', $change)->delete();
         return redirect()->route('admin')->with('pesan', 'Berhasil menghapus admin');
     }
 }

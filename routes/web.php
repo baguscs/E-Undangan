@@ -42,11 +42,15 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
             Route::post('add_admin/post', [AdminController::class, 'post'])->name('post_admin');
             Route::get('admins/edit/{id}', [AdminController::class, 'edit'])->name('edit_admin');
             Route::post('admins/edit/post/{id}', [AdminController::class, 'edited'])->name('edited_admin');
-            Route::get('admins/delete/{id}', [AdminController::class, 'delete'])->name('delete_admin');
+            Route::post('admins/delete/{id}', [AdminController::class, 'delete'])->name('delete_admin');
         });
         Route::prefix('customer')->group(function () {
             Route::get('customers', [CustomerController::class, 'index'])->name('customer');
             Route::get('add_customer', [CustomerController::class, 'add'])->name('add_customer');
+            Route::post('add_customer/post', [CustomerController::class, 'post'])->name('post_customer');
+            Route::get('customers/edit/{id}', [CustomerController::class, 'edit'])->name('edit_customer');
+            Route::post('customers/edit/post/{id}', [CustomerController::class, 'edited'])->name('edited_customer');
+            Route::post('customers/delete/{id}', [CustomerController::class, 'delete'])->name('delete_customer');
         });
     });
 });

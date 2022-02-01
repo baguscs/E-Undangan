@@ -1,31 +1,35 @@
 @extends('home.master')
 @section('konten')
-    <h3><i class="fa fa-angle-right"></i> Tambah Customer</h3>
+    <h3><i class="fa fa-angle-right"></i> Edit Customer</h3>
     <div class="row mt">
         <div class="col-lg-12">
             <div class="form-panel">
                 <div class="loc">
-                    <p><a href="{{ route('dashboard') }}">Dashboard</a> <i class="fa fa-angle-right"></i> Tambah Customer
+                    <p><a href="{{ route('dashboard') }}">Dashboard</a> <i class="fa fa-angle-right"></i> Edit Customer
                     </p>
                 </div>
-                <form action="{{ route('post_customer') }}" method="POST" class="form-horizontal style-form">
+                @php
+                    $passcode = $data->id;
+                    $id = Crypt::encrypt($passcode);
+                @endphp
+                <form action="{{ route('edited_customer', $id) }}" method="POST" class="form-horizontal style-form">
                     @csrf
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Nama Customer</label>
                         <div class="col-sm-9">
-                            <input type="text" value="{{old('nama')}}" name="nama" required autocomplete="off" class="form-control">
+                            <input type="text" value="{{$data->nama}}" name="nama" required autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Alamat</label>
                         <div class="col-sm-9">
-                            <input type="text" name="alamat" value="{{old('alamat')}}" required autocomplete="off" class="form-control">
+                            <input type="text" name="alamat" value="{{$data->alamat}}" required autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" name="email" value="{{old('email')}}" autocomplete="off" required class="form-control">
+                            <input type="email" name="email" value="{{$data->email}}" autocomplete="off" required class="form-control">
                             @error('email')
                                 <div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> <b>Kesalahan!</b> {{ $message }}.</div>
                             @enderror
@@ -34,7 +38,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">No. Telepon</label>
                         <div class="col-sm-9">
-                            <input type="number" name="telp" value="{{old('telp')}}" required autocomplete="off" class="form-control">
+                            <input type="number" name="telp" value="{{$data->no_telp}}" required autocomplete="off" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">

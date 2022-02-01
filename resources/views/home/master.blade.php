@@ -112,7 +112,7 @@
                     <span>Customer</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="grids.html"><i class="fa fa-plus-square"></i>Tambah Data</a></li>
+                    <li><a href="{{ route('add_customer') }}"><i class="fa fa-plus-square"></i>Tambah Data</a></li>
                     <li><a href="{{ route('customer') }}"><i class="fa fa-folder"></i>Lihat Data</a></li>
                 </ul>
             </li>

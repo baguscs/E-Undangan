@@ -8,7 +8,11 @@
                     <p><a href="{{ route('dashboard') }}">Dashboard</a> <i class="fa fa-angle-right"></i> Edit Administrator
                     </p>
                 </div>
-                <form action="{{ route('edited_admin', $data->id) }}" method="POST" class="form-horizontal style-form" enctype="multipart/form-data">
+                @php
+                    $passcode = $data->id;
+                    $id = Crypt::encrypt($passcode);
+                @endphp
+                <form action="{{ route('edited_admin', $id) }}" method="POST" class="form-horizontal style-form" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label class="col-sm-2 col-sm-2 control-label">Nama Administrator</label>

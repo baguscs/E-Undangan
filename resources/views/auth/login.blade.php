@@ -53,7 +53,7 @@
             </div>
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <h4 class="title">Welcome Back, Please Login First</h4>
+                <h4 class="title">Welcome, Please Login</h4>
                 @if ($messege = Session::get("pesan"))
                     <div class="alert">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
