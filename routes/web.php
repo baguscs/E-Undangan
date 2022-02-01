@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\CustomerController;
+use App\Models\admin;
+use App\Models\customer;
+use App\Models\order;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,10 @@ Route::get('logout', [Controller::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::middleware(['auth', 'security'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-            return view('home.index');
+            $admin = admin::where('roles_id', 2)->count();
+            $customer = customer::all()->count();
+            $order = order::all()->count();
+            return view('home.index', compact('admin', 'customer', 'order'));
         })->name('dashboard');
         Route::prefix('profil')->group(function () {
             Route::get('myprofile', [ProfilController::class, 'index'])->name('myprofile');

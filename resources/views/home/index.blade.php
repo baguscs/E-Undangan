@@ -8,7 +8,7 @@
                 <h5>ADMINISTRATOR</h5>
             </div>
             <h1 class="mt"><i class="fa fa-desktop fa-3x"></i></h1>
-            <p class="sum" data-count="120">0</p>
+            <p class="sum" data-count="{{$admin}}">0</p>
             </div>
             <!--  /darkblue panel -->
         </div>
@@ -21,7 +21,7 @@
                 <h5>CUSTOMER</h5>
             </div>
             <h1 class="mt"><i class="fa fa-users fa-3x"></i></h1>
-            <p class="sum" data-count="100">0</p>
+            <p class="sum" data-count="{{$customer}}">0</p>
             </div>
             <!--  /darkblue panel -->
         </div>
@@ -34,7 +34,7 @@
                 <h5>PESANAN</h5>
             </div>
             <h1 class="mt"><i class="fa fa-envelope fa-3x"></i></h1>
-            <p class="sum" data-count="111">0</p>
+            <p class="sum" data-count="{{$order}}">0</p>
             </div>
             <!--  /darkblue panel -->
         </div>
