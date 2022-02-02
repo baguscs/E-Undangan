@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoryController;
 use App\Models\admin;
 use App\Models\customer;
 use App\Models\order;
@@ -57,6 +59,16 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
             Route::get('customers/edit/{id}', [CustomerController::class, 'edit'])->name('edit_customer');
             Route::post('customers/edit/post/{id}', [CustomerController::class, 'edited'])->name('edited_customer');
             Route::post('customers/delete/{id}', [CustomerController::class, 'delete'])->name('delete_customer');
+        });
+        Route::prefix('order')->group(function () {
+            Route::get('orders', [OrderController::class, 'index'])->name('order');
+        });
+        Route::prefix('category')->group(function () {
+            Route::get('categorys', [CategoryController::class, 'index'])->name('category');
+            Route::get('add_category', [CategoryController::class, 'add'])->name('add_category');
+            Route::post('add_category/post', [CategoryController::class, 'post'])->name('post_category');
+            Route::get('categorys/edit/{id}', [CategoryController::class, 'edit'])->name('edit_category');
+            Route::post('categorys/edit/post/{id}', [CategoryController::class, 'edited'])->name('edited_category');
         });
     });
 });

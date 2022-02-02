@@ -117,13 +117,23 @@
                 </ul>
             </li>
             <li class="sub-menu">
+              <a href="javascript:;">
+                  <i class="fa fa-puzzle-piece"></i>
+                  <span>Kategori</span>
+              </a>
+              <ul class="sub">
+                  <li><a href="{{ route('add_category') }}"><i class="fa fa-plus-square"></i>Tambah Kategori</a></li>
+                  <li><a href="{{ route('category') }}"><i class="fa fa-folder"></i>Lihat Kategori</a></li>
+              </ul>
+          </li>
+            <li class="sub-menu">
                 <a href="javascript:;">
                     <i class="fa fa-envelope"></i>
                     <span>Pesanan</span>
                 </a>
                 <ul class="sub">
                     <li><a href="blank.html"><i class="fa fa-plus-square"></i>Tambah Pesanan</a></li>
-                    <li><a href="login.html"><i class="fa fa-folder"></i>Lihat Pesanan</a></li>
+                    <li><a href="{{ route('order') }}"><i class="fa fa-folder"></i>Lihat Pesanan</a></li>
                 </ul>
             </li>
         </ul>
